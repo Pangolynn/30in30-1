@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Scoped CSS Variables and JS</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <h2>Update CSS Variables with <span class='h1'>JS</span></h2>
+
+   <div class="controls">
+      <label for="spacing">Spacing:</label>
+      <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+      <label for="blur">Blur:</label>
+      <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+      <label for="base">Base Color</label>
+      <input type="color" name="base" value="#ffc600">
+   </div>
+
+   <img src="http://vignette3.wikia.nocookie.net/wowwiki/images/d/d9/Illidan.png/revision/latest?cb=20140503134345">
+
+<script>
+   // retuns a node list not an array, array has array methods,
+   // node list does not have array methods.
+const inputs = document.querySelectorAll('.controls input');
+
+function handleUpdate() {
+   console.log(this.value);
+}
+
+inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+</script>
+
+</body>
+</html>
