@@ -9,6 +9,8 @@
    <h2>Update CSS Variables with <span class='h1'>JS</span></h2>
 
    <div class="controls">
+      <!-- values for change/mousemove events need to have px added to end,
+      use data attribute to make up sizing to add on px -->
       <label for="spacing">Spacing:</label>
       <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
@@ -26,11 +28,19 @@
    // node list does not have array methods.
 const inputs = document.querySelectorAll('.controls input');
 
+// dataset is an object that will contain all the 'data-x' attributes from the specific element
 function handleUpdate() {
-   console.log(this.value);
+   const suffix = this.dataset.sizing || '';
+
+   // select entire document, ':root' in css, and set the property.
+   // we have given the input name='x' so we just need to add in -- and a px at the end
+   // to match the css --Xpx
+   document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
 }
 
 inputs.forEach(input => input.addEventListener('change', handleUpdate));
+inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
 
 </script>
 
